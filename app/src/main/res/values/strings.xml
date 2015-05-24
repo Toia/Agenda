@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Agenda-electronica</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="Name_user_default"> Default user </string>
+    <string name="tel_default"> Default telephone number </string>
+    <string name="Name_group_default"> Default group </string>
+    <string name="name"> Name: </string>
+    <string name="tel"> Telephone number: </string>
+    <string name="group"> Group: </string>
+    <string name="edit_button"> Edit: </string>
+    <string name="option_default"> Default options: </string>
+
+    <string-array name = "nav_drawer_items" >
+        <item> All contacts </item>
+        <item> Groups </item>
+    </string-array>
+
+
+</resources>
