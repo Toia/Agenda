@@ -16,6 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name = "AllContacts_activity" />
+        <activity android:name = "Group_activity" />
+        <activity android:name = "Contact_activity" />
+        <activity android:name = "Edit_Contact_activity" />
+
     </application>
 
 </manifest>

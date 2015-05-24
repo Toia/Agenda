@@ -1,20 +1,15 @@
 package com.andreuvictoria2015.agenda_electronica;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import java.util.logging.ConsoleHandler;
 
 
 public class MainActivity extends ActionBarActivity implements ListView.OnItemClickListener{
@@ -65,11 +60,16 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if(position == 0){
-            /* ves a All contacts */
+            Intent i = new Intent(MainActivity.this, AllContacts_activity.class);
+            startActivity(i);
         }
         if(position == 1){
-            /* ves a Group */
-
+            Intent i = new Intent(MainActivity.this, Group_activity.class);
+            startActivity(i);
+        }
+        if(position == 2){
+            Intent i = new Intent(MainActivity.this, Contact_activity.class);
+            startActivity(i);
         }
     }
 }
