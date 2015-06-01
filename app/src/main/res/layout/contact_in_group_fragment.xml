@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/image_item"
+        android:src="@drawable/user_default_small"
+        android:clickable="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/Name_user_default"
+        android:id="@+id/name_item"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:textColor="#ff000000"
+        android:clickable="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text=""
+        android:id="@+id/counter_item"
+        android:gravity="center_vertical"
+        android:clickable="false" />
+
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/radio_group">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add"
+            android:id="@+id/radioButton_add"
+            android:textColor="#ff000000"
+            android:buttonTint="#ff060e94" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/remove"
+            android:id="@+id/radioButton_remove"
+            android:textColor="#ff000000"
+            android:buttonTint="#ff060e94" />
+    </RadioGroup>
+
+
+</LinearLayout>

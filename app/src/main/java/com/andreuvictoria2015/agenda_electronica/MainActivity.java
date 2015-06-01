@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
-public class MainActivity extends ActionBarActivity implements ListView.OnItemClickListener{
+public class MainActivity extends ActionBarActivity implements ListView.OnItemClickListener {
     private String[] mOptions;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -31,6 +31,10 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
         mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, this.mOptions));
         // Set the list's click listener
         mDrawerList.setOnItemClickListener(this);
+
+        // Enable Local Datastore.
+        //Parse.enableLocalDatastore(this);
+        //Parse.initialize(this, "C4Iwrdv978eJzKuv6sLakAnNfbscz9BLPhF53gxp", "7hsClDF4Yxy4jZ4wIiivUYF0VaMnDuiXv9zlDTT3");
 
     }
 
@@ -59,16 +63,27 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if(position == 0){
+        if (position == 0) {
             Intent i = new Intent(MainActivity.this, AllContacts_activity.class);
             startActivity(i);
         }
-        if(position == 1){
-            Intent i = new Intent(MainActivity.this, Group_activity.class);
+        if (position == 1) {
+            Intent i = new Intent(MainActivity.this, Groups_activity.class);
+            i.putExtra("option", position);
             startActivity(i);
         }
-        if(position == 2){
-            Intent i = new Intent(MainActivity.this, Contact_activity.class);
+        if (position == 2) {
+            Intent i = new Intent(MainActivity.this, Groups_activity.class);
+            i.putExtra("option", position);
+            startActivity(i);
+        }
+        if (position == 3) {
+            Intent i = new Intent(MainActivity.this, Edit_Contact_activity.class);
+            i.putExtra("option", "newContact");
+            startActivity(i);
+        }
+        if (position == 4) {
+            Intent i = new Intent(MainActivity.this, Groups_activity.class);
             startActivity(i);
         }
     }

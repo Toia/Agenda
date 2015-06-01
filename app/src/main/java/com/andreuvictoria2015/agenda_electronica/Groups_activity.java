@@ -12,10 +12,9 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class AllContacts_activity extends ActionBarActivity implements AdapterView.OnItemClickListener {
-
-    private ListView contactsList;
-    private ArrayList<ListItem> listItems = new ArrayList<ListItem>();
+public class Groups_activity extends ActionBarActivity implements AdapterView.OnItemClickListener {
+    private ListView groupList;
+    ArrayList<ListItem> listItems = new ArrayList<ListItem>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,7 +22,7 @@ public class AllContacts_activity extends ActionBarActivity implements AdapterVi
         setContentView(R.layout.list_layout);
 
 
-         // load slide menu items
+        // load slide menu items
         //agafem els noms dels contactes del parse
         //navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
@@ -32,20 +31,17 @@ public class AllContacts_activity extends ActionBarActivity implements AdapterVi
         TypedArray listIcons = getResources().obtainTypedArray(R.array.list_icons);
 
 
-        contactsList = (ListView) findViewById(R.id.the_list);
-
-        //ArrayList<ListItem> listItems = new ArrayList<ListItem>();
+        groupList = (ListView) findViewById(R.id.the_list);
 
 
         // adding nav drawer items to array
 
-        //funcio recuperar del parse i cal tenir en compte que caldra filtrar
-        listItems.add(new ListItem("Person 0", listIcons.getResourceId(0, -1)));
-        listItems.add(new ListItem("Person 1", listIcons.getResourceId(0, -1)));
-        listItems.add(new ListItem("Person 2", listIcons.getResourceId(0, -1)));
-        listItems.add(new ListItem("Person 3", listIcons.getResourceId(0, -1)));
-        listItems.add(new ListItem("Person 4", listIcons.getResourceId(0, -1)));
-        listItems.add(new ListItem("Person 5", listIcons.getResourceId(0, -1)));
+        listItems.add(new ListItem("Group 0", listIcons.getResourceId(1, -1)));
+        listItems.add(new ListItem("Group 1", listIcons.getResourceId(1, -1)));
+        listItems.add(new ListItem("Group 2", listIcons.getResourceId(1, -1)));
+        listItems.add(new ListItem("Group 3", listIcons.getResourceId(1, -1)));
+        listItems.add(new ListItem("Group 4", listIcons.getResourceId(1, -1)));
+        listItems.add(new ListItem("Group 5", listIcons.getResourceId(1, -1)));
 
 
         // Recycle the typed array
@@ -54,8 +50,8 @@ public class AllContacts_activity extends ActionBarActivity implements AdapterVi
         // setting the nav drawer list adapter
         ListAdapter adapter = new ListAdapter(getApplicationContext(),
                 listItems);
-        contactsList.setAdapter(adapter);
-        contactsList.setOnItemClickListener(this);
+        groupList.setAdapter(adapter);
+        groupList.setOnItemClickListener(this);
 
         // enabling action bar app icon and behaving it as toggle button
         /*getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -90,8 +86,21 @@ public class AllContacts_activity extends ActionBarActivity implements AdapterVi
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Log.d("CONTACTS POSITION", position + "");
 
-        Intent i = new Intent(AllContacts_activity.this, Contact_activity.class);
-        i.putExtra("name", this.listItems.get(position).getTitle());
+        Integer option = getIntent().getIntExtra("option", -1);
+        Intent i = null;
+
+        if (option == 1) {
+            i = new Intent(Groups_activity.this, AllContacts_activity.class);
+            i.putExtra("group", this.listItems.get(position).getTitle());
+
+        }
+
+        if (option == 2) {
+            i = new Intent(Groups_activity.this, Group_activity.class);
+            i.putExtra("group", this.listItems.get(position).getTitle());
+
+        }
+            
         startActivity(i);
 
     }

@@ -11,15 +11,25 @@
     <string name="name"> Name: </string>
     <string name="tel"> Telephone number: </string>
     <string name="group"> Group: </string>
-    <string name="edit_button"> Edit: </string>
+    <string name="edit_button"> Edit </string>
     <string name="save_button"> Save changes </string>
     <string name="option_default"> Default options: </string>
+    <string name="add"> add to group </string>
+    <string name="remove"> remove from group </string>
 
     <string-array name = "nav_drawer_items" >
         <item> All contacts </item>
         <item> Groups </item>
-        <item> Settings </item>
+        <item> Group Settings </item>
+        <item> New Contact </item>
+        <item> New Group </item>
     </string-array>
+
+    <array name="list_icons">
+        <item>@drawable/user_default_small</item>
+        <item>@drawable/group_default</item>
+    </array>
+
 
 
 </resources>
