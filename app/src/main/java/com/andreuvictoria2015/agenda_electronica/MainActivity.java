@@ -11,6 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.parse.Parse;
+import com.parse.ParseInstallation;
+
 
 public class MainActivity extends ActionBarActivity implements ListView.OnItemClickListener {
     private String[] mOptions;
@@ -33,8 +36,9 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
         mDrawerList.setOnItemClickListener(this);
 
         // Enable Local Datastore.
-        //Parse.enableLocalDatastore(this);
-        //Parse.initialize(this, "C4Iwrdv978eJzKuv6sLakAnNfbscz9BLPhF53gxp", "7hsClDF4Yxy4jZ4wIiivUYF0VaMnDuiXv9zlDTT3");
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this, "C4Iwrdv978eJzKuv6sLakAnNfbscz9BLPhF53gxp", "7hsClDF4Yxy4jZ4wIiivUYF0VaMnDuiXv9zlDTT3");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
 
     }
 
@@ -83,7 +87,7 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
             startActivity(i);
         }
         if (position == 4) {
-            Intent i = new Intent(MainActivity.this, Groups_activity.class);
+            Intent i = new Intent(MainActivity.this, Group_activity.class);
             startActivity(i);
         }
     }

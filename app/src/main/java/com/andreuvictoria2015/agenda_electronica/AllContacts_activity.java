@@ -10,12 +10,20 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.parse.FindCallback;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseException;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class AllContacts_activity extends ActionBarActivity implements AdapterView.OnItemClickListener {
 
     private ListView contactsList;
     private ArrayList<ListItem> listItems = new ArrayList<ListItem>();
+    TypedArray listIcons;
+    ListAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,7 +37,7 @@ public class AllContacts_activity extends ActionBarActivity implements AdapterVi
 
         // nav drawer icons from resources
         //agafem les imatges del parse
-        TypedArray listIcons = getResources().obtainTypedArray(R.array.list_icons);
+        listIcons = getResources().obtainTypedArray(R.array.list_icons);
 
 
         contactsList = (ListView) findViewById(R.id.the_list);
@@ -40,21 +48,30 @@ public class AllContacts_activity extends ActionBarActivity implements AdapterVi
         // adding nav drawer items to array
 
         //funcio recuperar del parse i cal tenir en compte que caldra filtrar
-        listItems.add(new ListItem("Person 0", listIcons.getResourceId(0, -1)));
-        listItems.add(new ListItem("Person 1", listIcons.getResourceId(0, -1)));
-        listItems.add(new ListItem("Person 2", listIcons.getResourceId(0, -1)));
-        listItems.add(new ListItem("Person 3", listIcons.getResourceId(0, -1)));
-        listItems.add(new ListItem("Person 4", listIcons.getResourceId(0, -1)));
-        listItems.add(new ListItem("Person 5", listIcons.getResourceId(0, -1)));
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Contact");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> allContactsList, ParseException e) {
+                ParseObject object;
+                if (e == null) {
+                    for (int i = 0; i < allContactsList.size(); i++) {
+                        object = (ParseObject) allContactsList.get(i);
+                        listItems.add(new ListItem(object.getObjectId(),
+                                object.get("contact_name").toString(), listIcons.getResourceId(0, -1)));
+                    }
+                    adapter = new ListAdapter(getApplicationContext(), listItems);
+                    contactsList.setAdapter(adapter);
+
+                } else {
+                    Log.d("score", "Error: " + e.getMessage());
+                }
+            }
+        });
 
 
         // Recycle the typed array
         //navMenuIcons.recycle();
 
         // setting the nav drawer list adapter
-        ListAdapter adapter = new ListAdapter(getApplicationContext(),
-                listItems);
-        contactsList.setAdapter(adapter);
         contactsList.setOnItemClickListener(this);
 
         // enabling action bar app icon and behaving it as toggle button
@@ -91,7 +108,7 @@ public class AllContacts_activity extends ActionBarActivity implements AdapterVi
         Log.d("CONTACTS POSITION", position + "");
 
         Intent i = new Intent(AllContacts_activity.this, Contact_activity.class);
-        i.putExtra("name", this.listItems.get(position).getTitle());
+        i.putExtra("id", this.listItems.get(position).getId());
         startActivity(i);
 
     }

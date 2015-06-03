@@ -5,18 +5,21 @@ public class ListItem {
 
     private String title;
     private int icon;
+    private String id;
     private String count = "0";
     private boolean isCounterVisible = false;  // boolean to set visiblity of the counter
 
 
     public ListItem(){}
 
-    public ListItem(String title, int icon){
+    public ListItem(String id, String title, int icon){
+        this.id = id;
         this.title = title;
         this.icon = icon;
     }
 
-    public ListItem(String title, int icon, boolean isCounterVisible, String count){
+    public ListItem(String id, String title, int icon, boolean isCounterVisible, String count){
+        this.id = id;
         this.title = title;
         this.icon = icon;
         this.isCounterVisible = isCounterVisible;
@@ -53,5 +56,13 @@ public class ListItem {
 
     public void setCounterVisibility(boolean isCounterVisible){
         this.isCounterVisible = isCounterVisible;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

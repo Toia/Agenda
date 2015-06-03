@@ -33,12 +33,12 @@ public class Group_activity extends ActionBarActivity {
         // adding nav drawer items to array
 
         //funcio recuperar del parse i cal tenir en compte que caldra filtrar
-        listItems.add(new ListItem("Person 0", listIcons.getResourceId(0, -1)));
-        listItems.add(new ListItem("Person 1", listIcons.getResourceId(0, -1)));
-        listItems.add(new ListItem("Person 2", listIcons.getResourceId(0, -1)));
-        listItems.add(new ListItem("Person 3", listIcons.getResourceId(0, -1)));
-        listItems.add(new ListItem("Person 4", listIcons.getResourceId(0, -1)));
-        listItems.add(new ListItem("Person 5", listIcons.getResourceId(0, -1)));
+        listItems.add(new ListItem("i", "Person 0", listIcons.getResourceId(0, -1)));
+        listItems.add(new ListItem("ii", "Person 1", listIcons.getResourceId(0, -1)));
+        listItems.add(new ListItem("iii", "Person 2", listIcons.getResourceId(0, -1)));
+        listItems.add(new ListItem("iv", "Person 3", listIcons.getResourceId(0, -1)));
+        listItems.add(new ListItem("v", "Person 4", listIcons.getResourceId(0, -1)));
+        listItems.add(new ListItem("vi", "Person 5", listIcons.getResourceId(0, -1)));
 
 
         // Recycle the typed array

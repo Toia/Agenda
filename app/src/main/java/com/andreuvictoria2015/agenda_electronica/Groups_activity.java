@@ -35,14 +35,12 @@ public class Groups_activity extends ActionBarActivity implements AdapterView.On
 
 
         // adding nav drawer items to array
-
-        listItems.add(new ListItem("Group 0", listIcons.getResourceId(1, -1)));
-        listItems.add(new ListItem("Group 1", listIcons.getResourceId(1, -1)));
-        listItems.add(new ListItem("Group 2", listIcons.getResourceId(1, -1)));
-        listItems.add(new ListItem("Group 3", listIcons.getResourceId(1, -1)));
-        listItems.add(new ListItem("Group 4", listIcons.getResourceId(1, -1)));
-        listItems.add(new ListItem("Group 5", listIcons.getResourceId(1, -1)));
-
+        listItems.add(new ListItem("i", "Group 0", listIcons.getResourceId(0, -1)));
+        listItems.add(new ListItem("ii", "Group 1", listIcons.getResourceId(0, -1)));
+        listItems.add(new ListItem("iii", "Group 2", listIcons.getResourceId(0, -1)));
+        listItems.add(new ListItem("iv", "Group 3", listIcons.getResourceId(0, -1)));
+        listItems.add(new ListItem("v", "Group 4", listIcons.getResourceId(0, -1)));
+        listItems.add(new ListItem("vi", "Group 5", listIcons.getResourceId(0, -1)));
 
         // Recycle the typed array
         //navMenuIcons.recycle();

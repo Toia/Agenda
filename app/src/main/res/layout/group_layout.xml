@@ -16,10 +16,10 @@
             android:src="@drawable/group_default"
             android:id="@+id/imageView" />
 
-        <TextView
+        <EditText
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:text="@string/Name_user_default"
+            android:text="@string/Name_group_default"
             android:id="@+id/name_item"
             android:gravity="center_vertical|center_horizontal"
             android:padding="10dp"
