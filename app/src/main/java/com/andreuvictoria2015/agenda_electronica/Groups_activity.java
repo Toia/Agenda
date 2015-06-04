@@ -10,11 +10,19 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Groups_activity extends ActionBarActivity implements AdapterView.OnItemClickListener {
     private ListView groupList;
     ArrayList<ListItem> listItems = new ArrayList<ListItem>();
+    TypedArray listIcons;
+    ListAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,10 +36,29 @@ public class Groups_activity extends ActionBarActivity implements AdapterView.On
 
         // nav drawer icons from resources
         //agafem les imatges del parse
-        TypedArray listIcons = getResources().obtainTypedArray(R.array.list_icons);
+        listIcons = getResources().obtainTypedArray(R.array.list_icons);
 
 
         groupList = (ListView) findViewById(R.id.the_list);
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Group");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> allGroupsList, ParseException e) {
+                ParseObject object;
+                if (e == null) {
+                    for (int i = 0; i < allGroupsList.size(); i++) {
+                        object = (ParseObject) allGroupsList.get(i);
+                        listItems.add(new ListItem(object.getObjectId(),
+                                object.get("group_name").toString(), listIcons.getResourceId(0, -1)));
+                    }
+                    adapter = new ListAdapter(getApplicationContext(), listItems);
+                    groupList.setAdapter(adapter);
+
+                } else {
+                    Log.d("score", "Error: " + e.getMessage());
+                }
+            }
+        });
 
 
         // adding nav drawer items to array
@@ -45,11 +72,13 @@ public class Groups_activity extends ActionBarActivity implements AdapterView.On
         // Recycle the typed array
         //navMenuIcons.recycle();
 
+        groupList.setOnItemClickListener(this);
+
         // setting the nav drawer list adapter
-        ListAdapter adapter = new ListAdapter(getApplicationContext(),
+        /*ListAdapter adapter = new ListAdapter(getApplicationContext(),
                 listItems);
         groupList.setAdapter(adapter);
-        groupList.setOnItemClickListener(this);
+        groupList.setOnItemClickListener(this);*/
 
         // enabling action bar app icon and behaving it as toggle button
         /*getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -89,17 +118,19 @@ public class Groups_activity extends ActionBarActivity implements AdapterView.On
 
         if (option == 1) {
             i = new Intent(Groups_activity.this, AllContacts_activity.class);
-            i.putExtra("group", this.listItems.get(position).getTitle());
+            i.putExtra("option", this.listItems.get(position).getId());
 
         }
 
         if (option == 2) {
             i = new Intent(Groups_activity.this, Group_activity.class);
-            i.putExtra("group", this.listItems.get(position).getTitle());
+            i.putExtra("group", this.listItems.get(position).getId());
 
         }
             
         startActivity(i);
 
     }
+
+
 }

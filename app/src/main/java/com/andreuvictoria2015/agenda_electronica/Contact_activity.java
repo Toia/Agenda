@@ -50,8 +50,9 @@ public class Contact_activity extends ActionBarActivity {
                             query1.getInBackground(aux, new GetCallback<ParseObject>() {
                                 @Override
                                 public void done(ParseObject parseObject, ParseException e) {
+                                    if(parseObject != null){
                                     group_text.setText(parseObject.get("group_name").toString());
-                                }
+                                }}
                             });
                         }
 

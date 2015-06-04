@@ -69,6 +69,7 @@ public class MainActivity extends ActionBarActivity implements ListView.OnItemCl
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == 0) {
             Intent i = new Intent(MainActivity.this, AllContacts_activity.class);
+            i.putExtra("option", String.valueOf(position));
             startActivity(i);
         }
         if (position == 1) {

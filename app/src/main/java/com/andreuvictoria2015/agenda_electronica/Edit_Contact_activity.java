@@ -40,7 +40,6 @@ public class Edit_Contact_activity extends ActionBarActivity {
         if (! getIntent().getStringExtra("option").equals("newContact")){
             name_edit.setText(getIntent().getStringExtra("name"));
             tel_edit.setText(getIntent().getStringExtra("tel"));
-            Log.d("DDDDDDDDDDDDDDDDDDD", getIntent().getStringExtra("group"));
             group_edit.setText(getIntent().getStringExtra("group"));
 
         }
@@ -50,8 +49,7 @@ public class Edit_Contact_activity extends ActionBarActivity {
         new_tel = tel_edit.getText().toString();
 
         //group_edit.setText(R.string.Name_group_default);
-        String cacatua = " de xocolata";
-        cacatua = "nnj";
+
 
 
         if (! getIntent().getStringExtra("option").equals("newContact")){
@@ -72,6 +70,7 @@ public class Edit_Contact_activity extends ActionBarActivity {
 
                         new_contact.put("contact_name", name_edit.getText().toString());
                         new_contact.put("contact_number", Integer.parseInt(tel_edit.getText().toString()));
+                        new_contact.put("id_group", "");
                         new_contact.saveInBackground();
 
                     }else{

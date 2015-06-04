@@ -24,11 +24,19 @@ public class AllContacts_activity extends ActionBarActivity implements AdapterVi
     private ArrayList<ListItem> listItems = new ArrayList<ListItem>();
     TypedArray listIcons;
     ListAdapter adapter;
+    String id_group;
+    boolean isFiltered;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_layout);
+        if (getIntent().getStringExtra("option").equals("0")){
+            isFiltered = false;
+        }else{
+            isFiltered = true;
+            id_group = getIntent().getStringExtra("option");
+        }
 
 
          // load slide menu items
@@ -55,8 +63,17 @@ public class AllContacts_activity extends ActionBarActivity implements AdapterVi
                 if (e == null) {
                     for (int i = 0; i < allContactsList.size(); i++) {
                         object = (ParseObject) allContactsList.get(i);
-                        listItems.add(new ListItem(object.getObjectId(),
-                                object.get("contact_name").toString(), listIcons.getResourceId(0, -1)));
+                        if(isFiltered){
+                            if(object.get("id_group").toString().equals(id_group)){
+                                listItems.add(new ListItem(object.getObjectId(),
+                                        object.get("contact_name").toString(), listIcons.getResourceId(0, -1)));
+                            }
+
+                        }else{
+                            listItems.add(new ListItem(object.getObjectId(),
+                                    object.get("contact_name").toString(), listIcons.getResourceId(0, -1)));
+                        }
+
                     }
                     adapter = new ListAdapter(getApplicationContext(), listItems);
                     contactsList.setAdapter(adapter);
